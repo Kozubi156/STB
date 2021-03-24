@@ -1,5 +1,6 @@
 package jsonplaceholderphotos;
 
+import base.BaseTest;
 import com.github.javafaker.Faker;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
@@ -14,16 +15,8 @@ import utils.ApplicationEndpoints;
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class JsonplaceholderCreatePhotosTest {
+public class JsonplaceholderCreatePhotosTest extends BaseTest {
 
-    private static Photos photos;
-    private static Faker faker;
-
-    @BeforeAll
-    public static void beforeAll() {
-        photos = new Photos();
-        faker = new Faker();
-    }
 
     @BeforeEach
     public void beforeEach() {
