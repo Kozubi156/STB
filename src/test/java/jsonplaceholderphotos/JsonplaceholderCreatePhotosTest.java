@@ -27,20 +27,20 @@ public class JsonplaceholderCreatePhotosTest {
 
     @BeforeEach
     public void beforeEach() {
-        photos.albumId = faker.number().numberBetween(1, 10);
-        photos.albumTitle = faker.lorem().sentence();
-        photos.albumUrl = faker.internet().url();
-        photos.albumThumbnailUrl = faker.internet().url();
+        photos.setAlbumId(faker.number().numberBetween(1, 10));
+        photos.setAlbumTitle(faker.lorem().sentence());
+        photos.setAlbumUrl(faker.lorem().sentence());
+        photos.setAlbumThumbnailUrl(faker.internet().url());
     }
 
     @Test
     public void jsonplaceholderCreatePhotos() {
 
         JSONObject photosJson = new JSONObject();
-        photosJson.put("albumId", photos.albumId);
-        photosJson.put("title", photos.albumTitle);
-        photosJson.put("url", photos.albumUrl);
-        photosJson.put("thumbnailUrl", photos.albumThumbnailUrl);
+        photosJson.put("albumId", photos.getAlbumId());
+        photosJson.put("title", photos.getAlbumTitle());
+        photosJson.put("url", photos.getAlbumUrl());
+        photosJson.put("thumbnailUrl", photos.getAlbumThumbnailUrl());
 
         Response response = given()
                 .contentType("application/json")
@@ -53,9 +53,10 @@ public class JsonplaceholderCreatePhotosTest {
                 .response();
 
         JsonPath json = response.jsonPath();
-        assertEquals(photos.albumId, json.get("albumId"));
-        assertEquals(photos.albumTitle, json.get("title"));
-        assertEquals(photos.albumUrl, json.get("url"));
-        assertEquals(photos.albumThumbnailUrl, json.get("thumbnailUrl"));
+        assertEquals(photos.getAlbumId(), json.get("albumId"));
+        assertEquals(photos.getAlbumTitle(), json.get("title"));
+        assertEquals(photos.getAlbumUrl(), json.get("url"));
+        assertEquals(photos.getAlbumThumbnailUrl(), json.get("thumbnailUrl"));
     }
+
 }
